@@ -1,3 +1,4 @@
+import datetime
 a = "{[()]}"
 
 stack = []
@@ -10,5 +11,5 @@ for char in a:
     elif char in mapping:
         if not stack or stack.pop() != mapping[char]:
             print("not ok")
-    
-print("ok")
+date = datetime.datetime.now()    
+print(f"This is okay: {date}")
