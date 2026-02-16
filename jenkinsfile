@@ -20,7 +20,7 @@ pipeline {
 
             }
         }
-        stage ('Deploy') {
+        stage('Deploy') {
             steps {
                 echo "Deploying the code"
                 sh '''
@@ -31,7 +31,7 @@ pipeline {
         branch: $GIT_BRANCH
         time: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
         url: $BUILD_URL
-        EOF 
+        EOF
                 '''
 
                 archiveArtifacts artifacts: "deploy-info-$BUILD_NUMBER.txt", defaultExcludes: false, fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
