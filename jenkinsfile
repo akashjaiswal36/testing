@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE="$ajs3ra8/testing"
+        IMAGE="ajs3ra8/testing"
         TAG="${BUILD_NUMBER}"
     }
     stages {
