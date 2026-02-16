@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    enviornment {
+        IMAGE="$ajs3ra8/testing"
+        TAG="${BUILD_NUMBER}"
+    }
+    stages {
+        stage ('Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'github-token', poll: false, 
+                url: 'https://github.com/akashjaiswal36/testing.git'
+            }
+        }
+        stage ('Build') {
+            steps {
+                sh 'docker build -t "$IMAGE:$TAG" -t "$IMAGE:latest" .'
+            }
+        }
+        stage ('Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: 'DOCKER_PWD', usernameVariable: 'DOCKER_UNAME')]) {
+                sh 'echo $DOCKER_PWD | docker login -u $DOCKER_UNAME --password-stdin'
+                sh 'docker push "$IMAGE:$TAG"'
+                sh 'docker push "$IMAGE:latest"'
+        }
+
+            }
+        }
+        stage ('Deploy') {
+            steps {
+                echo "Deploying the code"
+            }
+        }
+        stage ('Test') {
+            steps {
+                echo "testing the code"
+            }
+        }
+        stage ('Clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+    }
+}
