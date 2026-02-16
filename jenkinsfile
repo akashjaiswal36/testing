@@ -33,7 +33,7 @@ pipeline {
                 url: $BUILD_URL
                 EOF '''
 
-                archiveArtifacts artifacts: 'deploy-info-$BUILD_NUMBER.txt', defaultExcludes: false, fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
+                archiveArtifacts artifacts: "deploy-info-$BUILD_NUMBER.txt", defaultExcludes: false, fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
             }
         }
         stage ('Test') {
