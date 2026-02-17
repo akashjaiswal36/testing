@@ -39,12 +39,23 @@ pipeline {
         }
         stage ('Test') {
             steps {
-                echo "testing the code"
+                sh 'sleep 2; echo "Hit http://localhost:5000 to see the app"'
             }
         }
         stage ('Clean workspace') {
             steps {
                 cleanWs()
+            }
+        }
+        post {
+            success {
+                echo "Build ${env.BUILD_NUMBER} succeeded"
+            }
+            failure {
+                echo "Build ${env.BUILD_NUMBER} failed"
+            }
+            always {
+                echo "Build ${env.BUILD_NUMBER} finished"
             }
         }
     }
