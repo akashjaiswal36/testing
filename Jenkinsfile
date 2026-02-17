@@ -5,6 +5,12 @@ pipeline {
         TAG="${BUILD_NUMBER}"
     }
     stages {
+        stage ('Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'github-cred', poll: false, 
+                url: 'https://github.com/akashjaiswal36/testing.git'
+            }
+        }
         stage ('Build') {
             steps {
                 sh 'docker build -t "$IMAGE:$TAG" -t "$IMAGE:latest" .'
