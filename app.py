@@ -7,7 +7,8 @@ def hello():
         message="✨ Welcome to Cloud with VarJosh ✨",
         tip="Built with Flask, shipped by Jenkins, running in Docker.",
         UI="THis is from feature/ui branch",
-        NOTE="This is new   pr"
+        NOTE="This is new   pr",
+        BRANCH="feaute branch is deleted"
     )
 
 if __name__ == "__main__":
