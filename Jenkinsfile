@@ -22,7 +22,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo "Deploying the code"
+                sh 'docker pull "$IMAGE:$TAG"'
+                sh 'docker rm -f flask-akash || true'
+                sh 'docker run -d --name flask-akash -p 5000:5000 "$IMAGE:$TAG"'
                 sh '''
                 cat > deploy-info-${BUILD_NUMBER}.txt <<EOF
                 build: $BUILD_NUMBER
