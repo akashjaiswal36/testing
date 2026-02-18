@@ -26,7 +26,7 @@ pipeline {
                 sh 'docker rm -f flask-akash || true'
                 sh 'docker run -d --name flask-akash -p 5000:5000 "$IMAGE:$TAG"'
                 sh '''
-                cat > deploy-info-${BUILD_NUMBER}.txt <<EOF
+                cat <<EOF > deploy-info-${BUILD_NUMBER}.txt
                 build: $BUILD_NUMBER
                 image: $IMAGE:$TAG
                 commit: $GIT_COMMIT
