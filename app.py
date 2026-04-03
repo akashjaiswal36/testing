@@ -8,7 +8,7 @@ def hello():
         tip="Built with Flask, shipped by Jenkins, running in Docker.",
         UI="THis is from feature/ui branch",
         NOTE="This is new   pr",
-        BRANCH="feaute branch is deleted , Will create new branch"
+        BRANCH="feaute branch is deleted , NEED TO CHECK"
     )
 
 if __name__ == "__main__":
